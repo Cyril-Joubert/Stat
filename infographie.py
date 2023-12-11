@@ -5,13 +5,28 @@ from plotly.subplots import make_subplots
 import scipy.stats as stats
 import numpy as np
 import plotly.express as px
+import os
 
-df_bonheur = pd.read_csv("/home/cyril.joubert@Digital-Grenoble.local/Documents/module_python/Stat/Data/test_hypo_data/enquete_sur_le_bonheur.csv", sep=";")
+
+
+file_path = "enquete_sur_le_bonheur.csv"
+
+if os.path.exists(file_path):
+    df_bonheur = pd.read_csv(file_path, sep=";")
+    # Rest of your code...
+else:
+    st.error("File not found at the specified path.")
+
+
+
+df_bonheur = pd.read_csv("enquete_sur_le_bonheur.csv", sep=";")
 df_bonheur["Timestamp"] = pd.to_datetime(df_bonheur["Timestamp"])
 df_bonheur = df_bonheur.set_index("Timestamp")
 
 
 st.title('Infographie sur le dataset du bonheur')
+
+st.dataframe(df_bonheur, use_container_width=True)
 
 fig = px.pie(names=df_bonheur["Etes vous heureux ?"].value_counts().index, values=df_bonheur["Etes vous heureux ?"].value_counts(), title="Proportion des gens heureux")
 st.plotly_chart(fig)
