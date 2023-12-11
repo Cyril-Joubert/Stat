@@ -8,7 +8,7 @@ import plotly.express as px
 
 
 
-df_bonheur = pd.read_csv("/home/cyril.joubert@Digital-Grenoble.local/Documents/module_python/Stat/Data/test_hypo_data/enquete_sur_le_bonheur.csv", sep=";")
+df_bonheur = pd.read_csv("enquete_sur_le_bonheur.csv", sep=";")
 df_bonheur["Timestamp"] = pd.to_datetime(df_bonheur["Timestamp"])
 df_bonheur = df_bonheur.set_index("Timestamp")
 
