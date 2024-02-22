@@ -82,28 +82,11 @@ pval2 = stats.ttest_ind(df_bonheur_heureux['Prenez-vous soin de votre santé ?']
 st.write("La pvalue vaut ", pval2[1], ", elle est inférieur à 0.05 donc on peut rejeter l'hypothèse H0. On peut donc dire que les gens heureux prennent plus soin de leur santé que les gens malheureux")
 
 
-# fig = go.Figure()
-
-# fig = make_subplots(rows=1, cols=2, subplot_titles=["Gens heureux", "Gens malheureux"], specs=[[{'type':'domain'}, {'type':'domain'}]])
-
-# fig.add_trace(go.Pie(labels=df_bonheur_heureux["Prenez-vous soin de votre santé ?"].value_counts().index, 
-#                      values=df_bonheur_heureux["Prenez-vous soin de votre santé ?"].value_counts(),
-#                      name="Gens heureux"), 1, 1)
-
-# fig.add_trace(go.Pie(labels=df_bonheur_malheureux["Prenez-vous soin de votre santé ?"].value_counts().index, 
-#                      values=df_bonheur_malheureux["Prenez-vous soin de votre santé ?"].value_counts(),
-#                      name="Gens malheureux"), 1, 2)
-
-# fig.update_layout(
-#     title_text="Comparaison de l'importance apporté à sa santé entre les gens heureux et les gens malheureux",
-#    )
-
 df_bonheur_heureux["Prenez-vous soin de votre santé ?"].value_counts()
 df_heureux_malheureux = pd.DataFrame()
 df_heureux_malheureux["heureux"], df_heureux_malheureux["malheureux"]= df_bonheur_heureux["Prenez-vous soin de votre santé ?"].value_counts(), df_bonheur_malheureux["Prenez-vous soin de votre santé ?"].value_counts()
 
 fig = px.bar(df_heureux_malheureux,
-            #  y=df_heureux_malheureux.columns,
              barmode='group',
              height=400)
 
